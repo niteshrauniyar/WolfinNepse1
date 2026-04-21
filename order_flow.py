@@ -267,3 +267,15 @@ def run_order_flow_engine(df: pd.DataFrame) -> dict:
         "broker_acf":     broker_acf,
         "broker_summary": broker_summary,
     }
+  def detect_changepoints(...):
+    ...
+    if not HAS_RUPTURES:
+        # Pure NumPy fallback: simple variance-based segmentation
+        diffs = np.abs(np.diff(signal))
+        threshold = np.percentile(diffs, 90)
+        breakpoints = [i+1 for i, d in enumerate(diffs) if d > threshold]
+        return breakpoints[:n_bkps], signal
+
+    try:
+        algo = rpt.Pelt(...)
+        ...
